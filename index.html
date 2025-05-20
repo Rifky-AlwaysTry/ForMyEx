@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ucapan Cinta</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      color: #e91e63;
+    }
+
+    #message {
+      min-height: 100px;
+      font-size: 18px;
+      margin-top: 1rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #d81b60;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Teruntuk Cintaku 💖</h1>
+    <p id="message"></p>
+      i love you Cintaku, Cantikku, Manisku Gadis Melizaaaaa. ❤️
+    <button onclick="changeMessage()">Lihat Pesan Lain</button>
+  </div>
+
+  <script>
+    const messages = [
+      "Hari-hariku lebih indah sejak kamu hadir di hidupku. 💫",
+      "Kamu adalah bagian terbaik dari hidupku. ❤️",
+      "Tak ada kata cukup untuk mengungkapkan cintaku padamu. 💕",
+      "Aku bersyukur setiap hari karena memilikimu. 🌹",
+      "Cinta kita adalah kisah favoritku. 📖",
+    ];
+
+    let index = 0;
+    let isTyping = false;
+
+    function typeMessage(text, element, speed = 50) {
+      element.textContent = "";
+      let i = 0;
+      isTyping = true;
+
+      const type = () => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          isTyping = false;
+        }
+      };
+
+      type();
+    }
+
+    function changeMessage() {
+      if (isTyping) return; // Mencegah spam klik
+      index = (index + 1) % messages.length;
+      typeMessage(messages[index], document.getElementById("message"));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const messageElement = document.getElementById("message");
+      typeMessage(messages[index], messageElement);
+    });
+  </script>
+</body>
+</html>
